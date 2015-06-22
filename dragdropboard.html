@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1, #div2, #div3
+{float:left; width:200px; height:350px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+
+#div1 {background-color:red}
+#div2 {background-color:green}
+#div3 {background-color:blue}
+#div_drag {float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}
+
+
+#board {background-color: white ; display: block; border: 1px solid black; width: auto; height: 300px; padding: 5px; }
+#backlog {background-color: lightblue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#committed_stories {background-color: blue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#committed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#tasks_in_progress {background-color: aqua ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#completed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#done_stories {background-color: chartreuse ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#current_sprints {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+
+
+
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+<!-- do i want to do this with tables and rows or just divs? -->
+<div id="board">
+  <div id="backlog" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Backlog</h2></div>
+  <div id="committed_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Committed Stories</h2></div>
+  <div id="committed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Committed Tasks</h2></div>
+  <div id="tasks_in_progress" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Tasks in Progress</h2></div>
+  <div id="completed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Completed Tasks</h2></div>
+  <div id="done_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Done Stories</h2></div>
+  <div id="current_sprints" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Current Sprint</h2></div>
+</div>
+
+
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div id="div_drag" draggable="true" ondragstart="drag(event)" id="drag2"></div>
+</div>
+
+<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+</div>
+
+</body>
+</html>
