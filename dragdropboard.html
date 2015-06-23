@@ -20,7 +20,12 @@
 #done_stories {background-color: chartreuse ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
 #current_sprints {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
 
-
+#Change_Sprint {background-color: orange;}
+#Add_Spint {background-color: orange;}
+#Add_Story {background-color: orange;}
+#Add_Task {background-color: orange;}
+#Add_Dependancy {background-color: orange;}
+#Add_Blocker {background-color: orange;}
 
 </style>
 <script>
@@ -41,6 +46,7 @@ function drop(ev) {
 </head>
 <body>
 <!-- do i want to do this with tables and rows or just divs? -->
+<!-- I think that I will add .. never mind, i was thinking a row could cross multiple divs -->
 <div id="board">
   <div id="backlog" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Backlog</h2></div>
   <div id="committed_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Committed Stories</h2></div>
@@ -48,10 +54,21 @@ function drop(ev) {
   <div id="tasks_in_progress" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Tasks in Progress</h2></div>
   <div id="completed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Completed Tasks</h2></div>
   <div id="done_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Done Stories</h2></div>
-  <div id="current_sprints" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2>Current Sprint</h2></div>
+  <div id="current_sprints" ondrop="drop(event)" ondragover="allowDrop(event)" >
+    <h2>Current Sprint</h2>
+    <p id="Sprint_Name"></p>
+    <p id="Sprint_Dates"></p>
+    <button id="Change_Sprint">Change Sprint</button>
+    <button id="Add_Spint">Add Spint</button>
+    <button id="Add_Story">Add Story</button>
+    <button id="Add_Task">Add Task</button>
+    <button id="Add_Dependancy">Add Dependancy</button>
+    <button id="Add_Blocker">Add Blocker</button>
+  </div>
 </div>
 
-
+<!-- text area object? -->
+<!-- upon object being placed in area, the target object will update its location -->
 
 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
   <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
