@@ -2,7 +2,44 @@
 <html>
 <head>
 
-<script language="javascript" type="text/javascript" src="create_new.js"></script>
+<style>
+#div1, #div2, #div3, #note_holder
+{float:left; width:200px; height:350px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+
+#div1 {background-color:red}
+#div2 {background-color:green}
+#div3 {background-color:blue}
+#div_drag {float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}
+
+.story_note, .task_note, .dependancy_note, .blocker_note {float:left; width:80px; height:80px; margin:5px;padding:5px;border:1px solid #aaaaaa;}
+
+.story_note_small, .task_note_small, .dependancy_note_small, .blocker_note_small {float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;}
+
+.story_note, .story_note_small {background-color:green} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:green}*/
+.task_note, .task_note_small {background-color:yellow} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}*/
+.dependancy_note, .dependancy_note_small {background-color:red} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:red}*/
+.blocker_note, .blocker_note_small {background-color:purple} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:purple}*/
+
+#board {background-color: white ; display: block; border: 1px solid black; width: auto; height: 600px; padding: 5px; }
+#backlog {background-color: lightblue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#committed_stories {background-color: blue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#committed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#tasks_in_progress {background-color: aqua ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#completed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#done_stories {background-color: chartreuse ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#current_sprints {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+
+#Change_Sprint {background-color: orange;}
+#Add_Spint {background-color: orange;}
+#Add_Story {background-color: orange;}
+#Add_Task {background-color: orange;}
+#Add_Dependancy {background-color: orange;}
+#Add_Blocker {background-color: orange;}
+
+</style>
+
+
+<!-- <script language="javascript" type="text/javascript" src="create_new.js"></script> -->
 <script type="text/javascript">
 var task_id = 0;
 var story_id = 0;
@@ -174,7 +211,7 @@ function create_new_story_small() {
   new_story_id.textContent = "ID: " + new_story.id;
 }
 
-}
+//}
 
 function create_new_dependancy_small() {
   // alert("test!");
@@ -219,44 +256,7 @@ function create_new_blocker_small() {
   new_blocker.appendChild(new_blocker_id);
   new_blocker_id.textContent = "ID: " + new_blocker.id;
 }
-</script>
 
-<style>
-#div1, #div2, #div3, #note_holder
-{float:left; width:200px; height:350px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
-
-#div1 {background-color:red}
-#div2 {background-color:green}
-#div3 {background-color:blue}
-#div_drag {float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}
-
-.story_note, .task_note, .dependancy_note, .blocker_note {float:left; width:80px; height:80px; margin:5px;padding:5px;border:1px solid #aaaaaa;}
-
-.story_note_small, .task_note_small, .dependancy_note_small, .blocker_note_small {float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;}
-
-.story_note, .story_note_small {background-color:green} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:green}*/
-.task_note, .task_note_small {background-color:yellow} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}*/
-.dependancy_note, .dependancy_note_small {background-color:red} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:red}*/
-.blocker_note, .blocker_note_small {background-color:purple} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:purple}*/
-
-#board {background-color: white ; display: block; border: 1px solid black; width: auto; height: 600px; padding: 5px; }
-#backlog {background-color: lightblue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-#committed_stories {background-color: blue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-#committed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-#tasks_in_progress {background-color: aqua ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-#completed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-#done_stories {background-color: chartreuse ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-#current_sprints {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
-
-#Change_Sprint {background-color: orange;}
-#Add_Spint {background-color: orange;}
-#Add_Story {background-color: orange;}
-#Add_Task {background-color: orange;}
-#Add_Dependancy {background-color: orange;}
-#Add_Blocker {background-color: orange;}
-
-</style>
-<script>
 function allowDrop(ev) {
     ev.preventDefault();
     // alert(ev.cancelable);
@@ -305,107 +305,8 @@ function test_date() {
   alert(my_date + ", " + my_date2 + '!');
 }
 
-</script>
-</head>
-<body>
-<!-- do i want to do this with tables and rows or just divs? -->
-<!-- I think that I will add .. never mind, i was thinking a row could cross multiple divs -->
-<div id="board">
-  <div id="backlog" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Backlog</h2></div>
-  <div id="committed_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Committed Stories</h2></div>
-  <div id="committed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Committed Tasks</h2></div>
-  <div id="tasks_in_progress" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Tasks in Progress</h2></div>
-  <div id="completed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Completed Tasks</h2></div>
-  <div id="done_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondrop="denyDrop(event)" ondragover="denyDrop(event)">Done Stories</h2></div>
-  <div id="current_sprints" >
-    <h2>Current Sprint</h2>
-    <p id="Sprint_Name"></p>
-    <p id="Sprint_Dates"></p>
-    <button id="Change_Sprint">Change Sprint</button>
-    <button id="Add_Spint">Add Spint</button>
-    <button id="Add_Story" onclick="create_new_story(), create_new_story_small()">Add Story</button>
-    <button id="Add_Task" onclick="create_new_task(), create_new_task_small()">Add Task</button>
-    <button id="Add_Dependancy" onclick="create_new_dependancy(), create_new_dependancy_small()">Add Dependancy</button>
-    <button id="Add_Blocker" onclick="create_new_blocker(), create_new_blocker_small()">Add Blocker</button>
-    <!-- <button onclick="add_div(), test_date()">ADD A NEW DIV!</button> works -->
-    <button onclick="add_div()">ADD A NEW DIV!</button>
-  </div>
-</div>
-
-<!-- text area object? -->
-<!-- upon object being placed in area, the target object will update its location -->
-
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-</div>
-
-
-
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
-<div id="div_drag" draggable="true" ondragstart="drag(event)" id="drag2"></div>
-<form>
-<input type="button" name="test" value="Click me" onclick="inform()">
-</form>
-</div>
-
-<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-<div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag2"></div>
-<div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag3"></div>
-<div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag4"></div>
-<div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag5"></div>
-<div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag6"></div>
-<div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag7"></div>
-<div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag8"></div>
-<div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag9"></div>
-<div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag10"></div>
-<div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag11"></div>
-<div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag12"></div>
-<div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag13"></div>
-
-</div>
-
-<div id="note_holder"><h2>Note Holder</h2></div>
-
-  <button onclick="send_text()">Send Text</button>
-  <p id="pull_text">Pull Text</p>
-  <p>-----------------------</p>
-  <p id="new_text"></p>
-  <p>-----------------------</p>
-  <p id="demo"></p>
-  <p>-----------------------</p>
-  <button onclick="change_me()">click me</button>
-  <p id="demo2">ha ha ha!</p>
-  <p>-----------------------</p>
-  <form name"add_new_task">
-    <input type="text" name="this_title" value="Enter Task Name Here"><br>
-    <input type="text" name="this_story" value="Enter Story Name Here"><br>
-    <input type="text" name="this_owner" value="Enter Owner's Name Here"><br>
-    <input type="text" name="dependancy" value="Enter Dependancy Name Here"><br>
-    <input type="submit" value="Submit" onclick="add_note()">
-  </form>
-
-<hr>
-
-    <button onclick="showdate()" >Show Dates</button>
-    <button onclick="myFunction()" >Show more Dates</button>
-    <button onclick="alert(Date());" >Re-Show Dates</button>
-    <span>Test2<textarea id="showme">Test</textarea>Test3</span>
-    <span id="testdate">Blah blah blah</span>
-    <button onclick="alert(document.getElementById("testdate").textContent);">text content</button>
-    <button onclick="test_date()" >Re-Show Dates</button>
-
-<hr>
-<button onclick="add_div()">ADD A NEW DIV!</button>
-<button onclick="add_note()">ADD A NEW NOTE!</button>
-<!-- Add Database -->
-<!-- Oracle Database -->
-<!-- Andrew -->
-<!-- None -->
-
-<script type="text/javascript">
-var task_id = 0;
-var story_id = 0;
+// var task_id = 0;
+// var story_id = 0;
 
   function send_text () {
     var x = document.getElementById("pull_text")[0].textContent;
@@ -513,44 +414,114 @@ function add_div() {
 
 }
 
-
-/*
-// Your existing code unmodified...
-var iDiv = document.createElement('div');
-iDiv.id = 'block';
-iDiv.className = 'block';
-document.getElementsByTagName('body')[0].appendChild(iDiv);
-
-// Now create and append to iDiv
-var innerDiv = document.createElement('div');
-innerDiv.className = 'block-2';
-
-// The variable iDiv is still good... Just append to it.
-iDiv.appendChild(innerDiv);
-*/
+function test_drag_and_drop() {
+  if (Modernizer.draganddrop) {
+    alert("DnD Supported!")
+  } else {
+    alert("DnD NOT Supported!")
+  }
+}
 
 </script>
 
+</head>
+<body onload="test_drag_and_drop()">
+<!-- do i want to do this with tables and rows or just divs? -->
+<!-- I think that I will add .. never mind, i was thinking a row could cross multiple divs -->
+<div id="board">
+  <div id="backlog" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Backlog</h2></div>
+  <div id="committed_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Committed Stories</h2></div>
+  <div id="committed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Committed Tasks</h2></div>
+  <div id="tasks_in_progress" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Tasks in Progress</h2></div>
+  <div id="completed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Completed Tasks</h2></div>
+  <div id="done_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondrop="denyDrop(event)" ondragover="denyDrop(event)">Done Stories</h2></div>
+  <div id="current_sprints" >
+    <h2>Current Sprint</h2>
+    <p id="Sprint_Name"></p>
+    <p id="Sprint_Dates"></p>
+    <button id="Change_Sprint">Change Sprint</button>
+    <button id="Add_Spint">Add Spint</button>
+    <button id="Add_Story" onclick="create_new_story(), create_new_story_small()">Add Story</button>
+    <button id="Add_Task" onclick="create_new_task(), create_new_task_small()">Add Task</button>
+    <button id="Add_Dependancy" onclick="create_new_dependancy(), create_new_dependancy_small()">Add Dependancy</button>
+    <button id="Add_Blocker" onclick="create_new_blocker(), create_new_blocker_small()">Add Blocker</button>
+    <!-- <button onclick="add_div(), test_date()">ADD A NEW DIV!</button> works -->
+    <button onclick="add_div()">ADD A NEW DIV!</button>
+    <button onclick="test_drag_and_drop()">DnD Supported?</button>
+  </div>
+</div>
 
-    <script language="JavaScript">
-    <!--
-    function submitForm(){
-      if(document.myForm.myText.value == ""){
-        alert("Please enter some text first");
-      }else{
-        document.myForm.mySubmit.click();
-      }
-    }
-    -->
-    </script>
+<!-- text area object? -->
+<!-- upon object being placed in area, the target object will update its location -->
 
-    <form name="myForm">
-    Please Enter some text and click the link.<br>
-      <input type=TEXT value="" name="myText">
-      <input type=SUBMIT value="Submit" name="mySubmit">
-    </form>
-    <br>
-    <a href="javascript:submitForm()">Click here to submit the form</a>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div id="div_drag" draggable="true" ondragstart="drag(event)" id="drag2"></div>
+<form>
+<input type="button" name="test" value="Click me" onclick="inform()">
+</form>
+</div>
+
+<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+<div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag2"></div>
+<div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag3"></div>
+<div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag4"></div>
+<div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag5"></div>
+<div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag6"></div>
+<div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag7"></div>
+<div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag8"></div>
+<div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag9"></div>
+<div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag10"></div>
+<div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag11"></div>
+<div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag12"></div>
+<div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag13"></div>
+
+</div>
+
+<div id="note_holder"><h2>Note Holder</h2></div>
+
+  <button onclick="send_text()">Send Text</button>
+  <p id="pull_text">Pull Text</p>
+  <p>-----------------------</p>
+  <p id="new_text"></p>
+  <p>-----------------------</p>
+  <p id="demo"></p>
+  <p>-----------------------</p>
+  <button onclick="change_me()">click me</button>
+  <p id="demo2">ha ha ha!</p>
+  <p>-----------------------</p>
+  <form name"add_new_task">
+    <input type="text" name="this_title" value="Enter Task Name Here"><br>
+    <input type="text" name="this_story" value="Enter Story Name Here"><br>
+    <input type="text" name="this_owner" value="Enter Owner's Name Here"><br>
+    <input type="text" name="dependancy" value="Enter Dependancy Name Here"><br>
+    <input type="submit" value="Submit" onclick="add_note()">
+  </form>
+
+<hr>
+
+    <button onclick="showdate()" >Show Dates</button>
+    <button onclick="myFunction()" >Show more Dates</button>
+    <button onclick="alert(Date());" >Re-Show Dates</button>
+    <span>Test2<textarea id="showme">Test</textarea>Test3</span>
+    <span id="testdate">Blah blah blah</span>
+    <button onclick="alert(document.getElementById("testdate").textContent);">text content</button>
+    <button onclick="test_date()" >Re-Show Dates</button>
+
+<hr>
+<button onclick="add_div()">ADD A NEW DIV!</button>
+<button onclick="add_note()">ADD A NEW NOTE!</button>
+<!-- Add Database -->
+<!-- Oracle Database -->
+<!-- Andrew -->
+<!-- None -->
+
 
 </body>
 </html>
