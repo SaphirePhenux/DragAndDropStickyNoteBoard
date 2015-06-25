@@ -1,3 +1,10 @@
+/************************************
+* eventually this will contain all  *
+* the JS stuff, but for now it just *
+* holds my experimental scripts and *
+* functions.                        *
+************************************/
+/*
 var task_id = 0;
 var story_id = 0;
 var dependancy_id = 0;
@@ -168,7 +175,7 @@ function create_new_story_small() {
   new_story_id.textContent = "ID: " + new_story.id;
 }
 
-}
+
 
 function create_new_dependancy_small() {
   // alert("test!");
@@ -215,7 +222,7 @@ function create_new_blocker_small() {
 }
 
 
-
+*/
 
 function put_new_task (argument) {
    // body...
