@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<style>
+#div1, #div2, #div3, #note_holder {float:left; width:200px; height:350px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+
+#div1 {background-color:red}
+#div2 {background-color:green}
+#div3 {background-color:blue}
+#div_drag {float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}
+
+.story_note, .task_note, .dependancy_note, .blocker_note, .owner_note {
+  float:left;
+  width:80px;
+  height:80px;
+  margin:5px;
+  padding:5px;
+  border:1px solid #aaaaaa;
+}
+
+.story_note_small, .task_note_small, .dependancy_note_small, .blocker_note_small {
+  float:left;
+  width:40px;
+  height:20px;
+  margin:5px;
+  padding:5px;
+  border:1px solid #aaaaaa;
+}
+
+.story_note, .story_note_small {background-color:green} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:green}*/
+.task_note, .task_note_small {background-color:yellow} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:yellow}*/
+.dependancy_note, .dependancy_note_small {background-color:red} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:red}*/
+.blocker_note, .blocker_note_small {background-color:purple} /*{float:left; width:40px; height:20px; margin:5px;padding:5px;border:1px solid #aaaaaa;background-color:purple}*/
+.owner_note {background-color: lightblue}
+
+#board {background-color: white ; display: block; border: 1px solid black; width: auto; height: 600px; padding: 5px; }
+#backlog {background-color: lightblue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#committed_stories {background-color: blue ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#committed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#tasks_in_progress {background-color: aqua ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#completed_tasks {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#done_stories {background-color: chartreuse ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+#current_sprints {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+
+#Change_Sprint {background-color: orange;}
+#Add_Spint {background-color: orange;}
+#Add_Story {background-color: orange;}
+#Add_Task {background-color: orange;}
+#Add_Dependancy {background-color: orange;}
+#Add_Blocker {background-color: orange;}
+
+#add_form, .new_column {background-color: white ; display: block; border: 1px solid black; width: 250px; height: 200px; padding: 5px; float: left; }
+
+</style>
+
+<script type="text/javascript">
+var task_id = 0;
+var story_id = 0;
+var dependancy_id = 0;
+var blocker_id = 0;
+
+window.create_new_task = function() {
+  // alert("test!");
+  var task_name = document.getElementById("task_info").value;
+  var task_story = document.getElementById("story_info").value;
+  var task_owner = document.getElementById("owner_info").value;
+  var new_task = document.createElement('div');
+  new_task.id = "task_" + task_id;
+  task_id++;
+  // alert(new_task.id + ", " + task_id);
+  new_task.className = 'task_note';
+  var candragya = document.createAttribute("draggable");
+  var dragstart = document.createAttribute("ondragstart");
+  candragya.value = "true";
+  dragstart.value = "drag(event)";
+// isdraggable
+// isdragstart
+  new_task.setAttributeNode(candragya);
+  new_task.setAttributeNode(dragstart);
+  document.getElementById("committed_tasks").appendChild(new_task);
+  var new_task_title = document.createElement('p');
+  new_task.appendChild(new_task_title);
+  new_task_title.textContent = "Task: " + task_name; // + Date();
+  var new_task_story = document.createElement('p');
+  var new_task_owner = document.createElement('p');
+  var new_task_id = document.createElement('p');
+  new_task.appendChild(new_task_story);
+  new_task.appendChild(new_task_owner);
+  new_task.appendChild(new_task_id);
+  new_task_story.textContent = "Story: " + task_story; // + Date();
+  new_task_owner.textContent = "Owner: " + task_owner; // + Date();
+  new_task_id.textContent = "ID: " + new_task.id;
+}
+
+window.create_new_story = function() {
+  // alert("test!");
+  var story_name = document.getElementById("story_info").value;
+  var story_owner = document.getElementById("owner_info").value;
+  var story_desc = document.getElementById("desc_info").value;
+  var new_story = document.createElement('div');
+  new_story.id = "story_" + story_id;
+  story_id++;
+  new_story.className = 'story_note';
+  var candragya = document.createAttribute("draggable");
+  var dragstart = document.createAttribute("ondragstart");
+  candragya.value = "true";
+  dragstart.value = "drag(event)";
+// isdraggable
+// isdragstart
+  new_story.setAttributeNode(candragya);
+  new_story.setAttributeNode(dragstart);
+  document.getElementById("backlog").appendChild(new_story);
+  var new_story_title = document.createElement('p');
+  new_story.appendChild(new_story_title);
+  new_story_title.textContent = "Story: " + story_name; // + Date();
+  var new_story_story = document.createElement('p');
+  var new_story_owner = document.createElement('p');
+  new_story.appendChild(new_story_story);
+  new_story.appendChild(new_story_owner);
+  new_story_story.textContent = "Desc: " + story_desc; // + Date();
+  new_story_owner.textContent = "Owner: " + story_owner; // + Date();
+}
+
+window.create_new_dependancy = function() {
+  // alert("test!");
+  var dependancy_task = document.getElementById("task_info").value;
+  var dependancy_story = document.getElementById("story_info").value;
+  var dependancy_owner = document.getElementById("owner_info").value;
+  // var dependancy_desc = document.getElementById("desc_info").value;
+  var dependancy_name = document.getElementById("dependancy_info").value;
+  var new_dependancy = document.createElement('div');
+  new_dependancy.id = "dependancy_" + dependancy_id;
+  dependancy_id++;
+  // alert(new_dependancy.id + ", " + dependancy_id);
+  new_dependancy.className = 'dependancy_note';
+  var candragya = document.createAttribute("draggable");
+  var dragstart = document.createAttribute("ondragstart");
+  candragya.value = "true";
+  dragstart.value = "drag(event)";
+// isdraggable
+// isdragstart
+  new_dependancy.setAttributeNode(candragya);
+  new_dependancy.setAttributeNode(dragstart);
+  // get element id based on where it needs to be and what it needs to be attached to.
+  document.getElementById("backlog").appendChild(new_dependancy);
+  var new_dependancy_title = document.createElement('p');
+  new_dependancy.appendChild(new_dependancy_title);
+  new_dependancy_title.textContent = "Dependancy: " + dependancy_name; // + Date();
+  var new_dependancy_story = document.createElement('p');
+  var new_dependancy_owner = document.createElement('p');
+  new_dependancy.appendChild(new_dependancy_story);
+  new_dependancy.appendChild(new_dependancy_owner);
+  new_dependancy_story.textContent = "Story: " + dependancy_story + ", or Task: " + dependancy_task; // + Date();
+  new_dependancy_owner.textContent = "Owner: " + dependancy_owner; // + Date();
+}
+
+window.create_new_blocker = function() {
+  // alert("test!");
+  var blocker_task = document.getElementById("task_info").value;
+  var blocker_story = document.getElementById("story_info").value;
+  var blocker_owner = document.getElementById("owner_info").value;
+  // var blocker_desc = document.getElementById("desc_info").value;
+  var blocker_name = document.getElementById("blocker_info").value;
+  var new_blocker = document.createElement('div');
+  new_blocker.id = "blocker_" + blocker_id;
+  blocker_id++;
+  // alert(new_blocker.id + ", " + blocker_id);
+  new_blocker.className = 'blocker_note';
+  var candragya = document.createAttribute("draggable");
+  var dragstart = document.createAttribute("ondragstart");
+  candragya.value = "true";
+  dragstart.value = "drag(event)";
+// isdraggable
+// isdragstart
+  new_blocker.setAttributeNode(candragya);
+  new_blocker.setAttributeNode(dragstart);
+  // Place according to the needed location.
+  document.getElementById("backlog").appendChild(new_blocker);
+  var new_blocker_title = document.createElement('p');
+  new_blocker.appendChild(new_blocker_title);
+  new_blocker_title.textContent = "Blocker: " + blocker_name; // + Date();
+  var new_blocker_story = document.createElement('p');
+  var new_blocker_owner = document.createElement('p');
+  new_blocker.appendChild(new_blocker_story);
+  new_blocker.appendChild(new_blocker_owner);
+  new_blocker_story.textContent = "Story: " + blocker_story + ", or Task: " + blocker_task; // + Date();
+  new_blocker_owner.textContent = "Owner: " + blocker_owner; // + Date();
+
+}
+
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+    // alert(ev.cancelable);
+}
+
+function denyDrop(ev) {
+  ev.stopPropagation();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
+
+function myFunction() {
+  alert("test");
+  // var d = new Date();
+  // document.getElementById("showme").innerHTML = Date();
+  // document.getElementById("testdate").innerHTML =  d; // new Date();
+}
+
+function inform(){
+    alert("You have activated me by clicking the grey button! Note that the event handler is added within the event that it handles, in this case, the form button event tag")
+}
+
+function test_date() {
+  var my_date = Date();
+  var my_date2 = new Date();
+  alert(my_date + ", " + my_date2 + '!');
+}
+
+  function send_text () {
+    var x = document.getElementById("pull_text")[0].textContent;
+    document.getElementById("new_text").innerHTML = x;
+    var y = getElementsByTagName("BUTTON")[0].textContent;
+    document.getElementById("demo").innerHTML = y;
+  }
+  function change_me () {
+    document.getElementById("demo2").textContent = "Paragraph changed!";
+    document.getElementById("pull_text").textContent = Date();
+  }
+
+function add_div() {
+  // alert("test!");
+  var new_task = document.createElement('div');
+  new_task.id = "task_" + task_id;
+  task_id++;
+  // alert(new_task.id + ", " + task_id);
+  new_task.className = 'task_note';
+  var candragya = document.createAttribute("draggable");
+  var dragstart = document.createAttribute("ondragstart");
+  candragya.value = "true";
+  dragstart.value = "drag(event)";
+// isdraggable
+// isdragstart
+  new_task.setAttributeNode(candragya);
+  new_task.setAttributeNode(dragstart);
+  document.getElementById("backlog").appendChild(new_task);
+  var new_task_title = document.createElement('p');
+  new_task.appendChild(new_task_title);
+  new_task_title.textContent = "Title: "; // + Date();
+  var new_task_story = document.createElement('p');
+  var new_task_owner = document.createElement('p');
+  var new_task_id = document.createElement('p');
+  new_task.appendChild(new_task_story);
+  new_task.appendChild(new_task_owner);
+  new_task.appendChild(new_task_id);
+  new_task_story.textContent = "Story: "; // + Date();
+  new_task_owner.textContent = "Owner: "; // + Date();
+  new_task_id.textContent = "ID: "; // + new_task.id;
+}
+
+</script>
+
+</head>
+<body>
+<!-- do i want to do this with tables and rows or just divs? -->
+<!-- I think that I will add .. never mind, i was thinking a row could cross multiple divs -->
+<div id="board">
+  <div id="backlog" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Backlog</h2></div>
+  <div id="committed_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Committed Stories</h2></div>
+  <div id="committed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Committed Tasks</h2></div>
+  <div id="tasks_in_progress" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Tasks in Progress</h2></div>
+  <div id="completed_tasks" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Completed Tasks</h2></div>
+  <div id="done_stories" ondrop="drop(event)" ondragover="allowDrop(event)" ><h2 ondragover="denyDrop(event)">Done Stories</h2></div>
+  <div id="current_sprints" >
+    <h2>Current Sprint</h2>
+    <p id="Sprint_Name"></p>
+    <p id="Sprint_Dates"></p>
+    <button id="Change_Sprint">Change Sprint</button>
+    <button id="Add_Spint">Add Spint</button>
+    <button id="Add_Story" onclick="create_new_story()">Add Story</button>
+    <!-- <button id="Add_Story" onclick="create_new_story(), create_new_story_small()">Add Story</button> -->
+    <button id="Add_Task" onclick="create_new_task()">Add Task</button>
+    <!-- <button id="Add_Task" onclick="create_new_task(), create_new_task_small()">Add Task</button> -->
+    <button id="Add_Dependancy" onclick="create_new_dependancy()">Add Dependancy</button>
+    <!-- <button id="Add_Dependancy" onclick="create_new_dependancy(), create_new_dependancy_small()">Add Dependancy</button> -->
+    <button id="Add_Blocker" onclick="create_new_blocker()">Add Blocker</button>
+    <!-- <button id="Add_Blocker" onclick="create_new_blocker(), create_new_blocker_small()">Add Blocker</button> -->
+    <button onclick="add_div(), test_date()">ADD A NEW DIV!</button> works
+    <button onclick="add_div()">ADD A NEW DIV!</button>
+  </div>
+  <div id="add_form">
+    <h2>Add Forms</h2>
+    <p>
+      <!-- <button><b>Owner</b></button> --> <b>Owner</b> <input id="owner_info" value="test"><br>
+      <!-- <button><b>Task</b></button> --> <b>Task <input id="task_info" value="test"><br>
+      <!-- <button><b>Story</b></button> --> <b>Story <input id="story_info" value="test"><br>
+      <!-- <button><b>Description</b></button> --> <b>Description <input id="desc_info" value="test"><br>
+      <!-- <button><b>Dependancy</b></button> --> <b>Dependancy <input id="dependancy_info" value="test"><br>
+      <!-- <button><b>Blocker</b></button> --> <b>Blocker <input id="blocker_info" value="test"><br>
+      <!-- <button><b>New Column</b></button> --> <b>New Column <input id="new_colmun" value="test"><br>
+    </p>
+  </div>
+</div>
+
+<!-- text area object? -->
+<!-- upon object being placed in area, the target object will update its location -->
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div id="div_drag" draggable="true" ondragstart="drag(event)" id="drag2"></div>
+<form>
+<input type="button" name="test" value="Click me" onclick="inform()">
+</form>
+</div>
+
+<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag2"></div>
+  <div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag3"></div>
+  <div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag4"></div>
+  <div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag5"></div>
+  <div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag6"></div>
+  <div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag7"></div>
+  <div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag8"></div>
+  <div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag9"></div>
+  <div class="story_note_small" draggable="true" ondragstart="drag(event)" id="drag10"></div>
+  <div class="task_note_small" draggable="true" ondragstart="drag(event)" id="drag11"></div>
+  <div class="dependancy_note_small" draggable="true" ondragstart="drag(event)" id="drag12"></div>
+  <div class="blocker_note_small" draggable="true" ondragstart="drag(event)" id="drag13"></div>
+</div>
+
+
+  <button onclick="send_text()">Send Text</button>
+  <p id="pull_text">Pull Text</p>
+  <p>-----------------------</p>
+  <p id="new_text"></p>
+  <p>-----------------------</p>
+  <p id="demo"></p>
+  <p>-----------------------</p>
+  <button onclick="change_me()">click me</button>
+  <p id="demo2">ha ha ha!</p>
+  <p>-----------------------</p>
+<hr>
+
+    <!-- <button onclick="showdate()" >Show Dates</button> -->
+    <button onmouseup="" ="myFunction()" >Show more Dates</button>
+    <button onclick="alert(Date())" >Re-Show Dates</button>
+    <span>Test2<textarea id="showme">Test</textarea>Test3</span>
+    <span id="testdate">Blah blah blah</span>
+    <button onclick="alert(document.getElementById("testdate").textContent)">text content</button>
+    <button onclick="test_date()" >Re-Show Dates</button>
+
+<hr>
+
+</body>
+</html>
