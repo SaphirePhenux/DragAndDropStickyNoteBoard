@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function JloadXMLDoc(url, var_name)
+{
+var xmlhttp;
+var json_var;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    json_var=xmlhttp.responseText;
+    alert("function call: " + xmlhttp.responseText + ", json_var: " + json_var);
+    // return xmlhttp.responseText;
+    // return json_var;
+    switch(var_name) {
+      case "the_backlog":
+        the_backlog = json_var;
+        alert("the_backlog & json_var: " + the_backlog + ", " + json_var);
+        break;
+      case "the_tasks":
+        the_tasks = json_var;
+        alert("the_tasks & json_var: " + the_tasks + ", " + json_var);
+        break;
+      case "the_owners":
+        the_owners = json_var;
+        alert("the_owners & json_var: " + the_owners + ", " + json_var);
+        break;
+      case "the_dependancies":
+        the_dependancies = json_var;
+        alert("the_dependancies & json_var: " + the_dependancies + ", " + json_var);
+        break;
+      case "the_blockers":
+        the_blockers = json_var;
+        alert("the_blockers & json_var: " + the_blockers + ", " + json_var);
+        break;
+      }
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+// return json_var;
+}
+
+// var backlog_url = "backlog.json"
+// var task_url = "tasks.json"
+// var dependancy_url = "dependancies.json"
+// var blocker_url = "blockers.json"
+// var column_url = "columns.json"
+
+function our_backlog() { alert("Set 1: " + the_backlog); }
+
+function our_backlog2() {
+  alert("button call: " + JloadXMLDoc("backlog.json"));
+}
+function our_tasks() { alert("Set 1: " + the_tasks); }
+
+function our_tasks2() {
+  alert(JloadXMLDoc("tasks.json"));
+}
+function our_owners() { alert("Set 1: " + the_owners); }
+
+function our_owners2() {
+  alert(JloadXMLDoc("dependancy.json"));
+}
+function our_dependancies() { alert("Set 1: " + the_dependancies); }
+
+function our_dependancies2() {
+  alert(JloadXMLDoc("blocker.json"));
+}
+function our_blockers() { alert("Set 1: " + the_blockers); }
+
+function our_blockers2() {
+  alert(JloadXMLDoc("columns.json"));
+}
+
+the_backlog = JloadXMLDoc("backlog.json", "the_backlog");
+the_tasks = JloadXMLDoc("tasks.json", "the_tasks");
+the_owners = JloadXMLDoc("dependancy.json", "the_owners");
+the_dependancies = JloadXMLDoc("blocker.json", "the_dependancies");
+the_blockers = JloadXMLDoc("columns.json", "the_blockers");
+
+
+// ====================================================================
+
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","ajax_info.txt",true);
+xmlhttp.send();
+}
+
+// var myRequest = new XMLHttpRequest();
+// void open("GET", "file:///home/andrew/CatchAll/DragAndDropStickyNoteBoard/ajax_info.txt",true);
+// void send();
+
+function loadXMLDoc2()
+{
+var xmlhttp;
+var txt,x,i,txt2;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    xmlDoc=xmlhttp.responseXML;
+    txt,txt2="";
+    x=xmlDoc.getElementsByTagName("ARTIST");
+    for (i=0;i<x.length;i++)
+      {
+      txt=txt + x[i].childNodes[0].nodeValue + ", i=" + i + "<br>";
+      txt2+=x[i].childNodes[0].nodeValue + ", ";
+      }
+    document.getElementById("myDiv2").innerHTML=txt;
+    alert(txt + " ||| " + x + " ||| " + txt2);
+    alert("readyState is: " + xmlhttp.readyState + ", and status is: " + xmlhttp.status);
+    }
+  }
+xmlhttp.open("GET","cd_catalog.xml",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+
+
+<h2>My CD Collection:</h2>
+<div id="myDiv2"></div>
+<button type="button" onclick="loadXMLDoc2()">Get my CD collection</button>
+<br>
+<button type="button" onclick="our_backlog()">Our Backlog</button><br>
+<button type="button" onclick="our_tasks()">Our Tasks</button><br>
+<button type="button" onclick="our_owners()">Our Owners</button><br>
+<button type="button" onclick="our_dependancies()">Our Dependancies</button><br>
+<button type="button" onclick="our_blockers()">Our Blockers</button><br>
+<br>
+<button type="button" onclick="our_backlog2()">Our Backlog</button><br>
+<button type="button" onclick="our_tasks2()">Our Tasks</button><br>
+<button type="button" onclick="our_owners2()">Our Owners</button><br>
+<button type="button" onclick="our_dependancies2()">Our Dependancies</button><br>
+<button type="button" onclick="our_blockers2()">Our Blockers</button><br>
+<br>
+</body>
+</html>

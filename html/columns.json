@@ -1,0 +1,3 @@
+{"blocker":[
+  {"Name":"First Blocker","Story":"First Story","Task":"First Task (Can be N/A if the item in question is being applied to the whole story rather than a single task.)","Description":"First Item in the list, can be N/A as well. This sub-item(Description) might be removed from later versions depending on how well it is used/received. Though code savvy folks could always add it back in (or remove it from current) if so desired, I wont begrudge you, promise! ;P -AB.","item_class":"blocker_note"}
+]}

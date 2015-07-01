@@ -1,0 +1,14 @@
+http://www.w3schools.com/ajax/ajax_intro.asp
+http://www.w3schools.com/ajax/ajax_example.asp
+http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
+http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp
+http://www.w3schools.com/ajax/ajax_xmlhttprequest_response.asp
+http://www.w3schools.com/ajax/ajax_xmlhttprequest_onreadystatechange.asp
+http://www.w3schools.com/ajax/ajax_php.asp
+http://www.w3schools.com/ajax/ajax_asp.asp
+http://www.w3schools.com/ajax/ajax_database.asp
+http://www.w3schools.com/php/php_ajax_database.asp
+http://www.w3schools.com/ajax/ajax_xmlfile.asp
+http://www.w3schools.com/ajax/cd_catalog.xml
+http://www.w3schools.com/php/php_ajax_xml.asp
+http://www.w3schools.com/ajax/ajax_examples.asp

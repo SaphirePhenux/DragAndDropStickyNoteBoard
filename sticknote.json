@@ -12,3 +12,63 @@ var sprint = {"sprint_items":[
     "story_status":"committed"
   }]
 }
+
+var story_list = {"story_items":[
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"}
+  ]}
+var task_list = {"task_items":[
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"}
+  ]}
+var owner_list = {"owner_items":[
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"}
+  ]}
+var dependancy_list = {"dependancy_items":[
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"}
+  ]}
+var blocker_list = {"blocker_items":[
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"},
+  {"item_name":"blah_blah","item_status":"committed","item_color":"green","item_owner":"Bob"}
+  ]}
+
+var our_stories = {"story_items":[
+  {"item_name":"first story","item_status":"committed","item_color":"green","item_owner":"Bob","item_class":"story_note"}
+  ]}
+var our_tasks = {"task_items":[
+  {"item_name":"first task","item_status":"committed","item_color":"yellow","item_owner":"Bob","item_class":"task_note"}
+  ]}
+var our_owners = {"owner_items":[
+  {"item_name":"first owner","item_status":"committed","item_color":"lightblue","item_owner":"Bob","item_class":"owner_note"}
+  ]}
+var our_dependancies = {"dependancy_items":[
+  {"item_name":"first dependancy","item_status":"committed","item_color":"red","item_owner":"Bob","item_class":"dependancy_note"}
+  ]}
+var our_blockers = {"blocker_items":[
+  {"item_name":"first blocker","item_status":"committed","item_color":"purple","item_owner":"Bob","item_class":"blocker_note"}
+  ]}
+
+var our_backlog = {"story":[
+  {"Name":"First Story","Status":"Committed","Owner":"First Owner","Description":"This is the default first story in the list of backlogged stories","item_class":"story_note"}
+  ]}
+// var the_stories = {} //replaced with backlog
+var the_tasks = {"task":[
+    {"Name":"First Task","Story":"First Story","Status":"Committed","item_class":"task_note"}
+  ]}
+var the_owners = {"owner":[
+    {"Name":"First Owner","Email":"first_owner@first_owner.com","Phone":"8018018018","item_class":"owner_note"}
+  ]} // might be renamed to team members at a later point in time. I'm not quite sure yet.
+var the_dependancies = {"dependancy":[
+    {"Name":"First Dependancy","Story":"First Story","Task":"First Task (Can be N/A if the item in question is being applied to the whole story rather than a single task.)","Description":"First Item in the list, can be N/A as well. This sub-item(Description) might be removed from later versions depending on how well it is used/received. Though code savvy folks could always add it back in (or remove it from current) if so desired, I wont begrudge you, promise! ;P -AB.","item_class":"dependancy_note"}
+  ]}
+var the_blockers = {"blocker":[
+    {"Name":"First Blocker","Story":"First Story","Task":"First Task (Can be N/A if the item in question is being applied to the whole story rather than a single task.)","Description":"First Item in the list, can be N/A as well. This sub-item(Description) might be removed from later versions depending on how well it is used/received. Though code savvy folks could always add it back in (or remove it from current) if so desired, I wont begrudge you, promise! ;P -AB.","item_class":"blocker_note"}
+  ]}
+

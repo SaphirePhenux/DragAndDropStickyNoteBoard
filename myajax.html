@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","ajax_info.txt",true);
+xmlhttp.send();
+}
+
+// var myRequest = new XMLHttpRequest();
+// void open("GET", "file:///home/andrew/CatchAll/DragAndDropStickyNoteBoard/ajax_info.txt",true);
+// void send();
+
+function loadXMLDoc2()
+{
+var xmlhttp;
+var txt,x,i,txt2;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    xmlDoc=xmlhttp.responseXML;
+    txt,txt2="";
+    x=xmlDoc.getElementsByTagName("ARTIST");
+    for (i=0;i<x.length;i++)
+      {
+      txt=txt + x[i].childNodes[0].nodeValue + ", i=" + i + "<br>";
+      txt2+=x[i].childNodes[0].nodeValue + ", ";
+      }
+    document.getElementById("myDiv").innerHTML=txt;
+    alert(txt + " ||| " + x + " ||| " + txt2);
+    alert("readyState is: " + xmlhttp.readyState + ", and status is: " + xmlhttp.status);
+    }
+  }
+xmlhttp.open("GET","cd_catalog.xml",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+
+
+<h2>My CD Collection:</h2>
+<div id="myDiv2"></div>
+<button type="button" onclick="loadXMLDoc2()">Get my CD collection</button>
+
+</body>
+</html>
